@@ -63,4 +63,4 @@ Replace `AccessKeyId` and `AccessKeySecret` with your [accesskey](https://help.a
 
 ### Scheduler
 
-You can make a schedule in Cron Job (Linux) or Scheduler Plan (Window) .
+You can make a schedule in Cron Job (Linux) or Scheduler Plan (Windows) .
