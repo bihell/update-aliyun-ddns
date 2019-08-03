@@ -32,11 +32,11 @@ public class UpdateDomainRecord {
         parameters.put("SignatureNonce", UUID.randomUUID().toString());
         parameters.put("Format", "json");
 
-        if (args[0].equals("DescribeDomainRecords")) {
+        if ("DescribeDomainRecords".equals(args[0])) {
             parameters.put("DomainName", args[3]);
         }
 
-        if (args[0].equals("UpdateDomainRecord")) {
+        if ("UpdateDomainRecord".equals(args[0])) {
             parameters.put("RecordId", args[3]);
             parameters.put("RR", args[4]);
             parameters.put("Type", "A");
@@ -44,8 +44,8 @@ public class UpdateDomainRecord {
         }
 
         // calculate signature
-        String get_stringToSign = StringToSign.getSign(parameters);
-        String signature = HmacSha1Signature.calculateRFC2104HMAC(get_stringToSign.toString(), args[2] + "&");
+        String getStringToSign = StringToSign.getSign(parameters);
+        String signature = HmacSha1Signature.calculateRFC2104HMAC(getStringToSign.toString(), args[2] + "&");
 
         // final request URL
         parameters.put("Signature", signature);

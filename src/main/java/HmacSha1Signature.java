@@ -7,6 +7,9 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 
+/**
+ * @author haseochen
+ */
 public class HmacSha1Signature {
     private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
 
