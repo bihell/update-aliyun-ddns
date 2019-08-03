@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- *
- * @author haseochen
- * @date 2017/8/4
+ * Created by haseochen on 2017/8/4.
  */
 public class StringToSign {
     private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
