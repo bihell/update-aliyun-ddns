@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+/**
+ * @author haseochen
+ */
 public class IpChecker {
 
     public static String getIp() throws Exception {
