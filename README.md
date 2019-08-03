@@ -1,32 +1,32 @@
-[中文说明](http://www.bihell.com/2017/08/07/aliyun-ddns/)
+[中文](https://github.com/bihell/UpdateDomainRecord) [English](https://github.com/bihell/UpdateDomainRecord/blob/master/README-EN.md)
 
-## Introduction
+## 功能
 
-This application will get your external IP then update A record for your specificed domain via API provided by [Aliyun](https://www.alibabacloud.com/) .
+通过阿里云提供的API，把指定的域名解析到自己的公网IP(A记录)。
 
-## Limit
+## 使用限制
 
-Your domain must be managed by Aliyun's domain service, otherwise it will not work.
+域名必须由阿里云/万网托管
 
-## Depoly
+## 程序部署
 
-1.Download JDK/JRE
-2.Download [lastest release](https://github.com/bihell/UpdateDomainRecord/releases) or Source code
+1.下载JDK/JRE。
+2.直接下载打包好的Jar包或自行下载源码。
 
-## Usage
+## 使用
 
-### First: Get domain list
+### 第一步:获取域名列表
 
-Usage:
+用法:
 
     java -jar ./UpdateDomainRecord.jar DescribeDomainRecords AccessKeyId AccessKeySecret DomainName
 
-Example:
-Replace `AccessKeyId` and `AccessKeySecret` with your [accesskey](https://help.aliyun.com/knowledge_detail/38738.html) . Replace `DomainName` with the one you purchased from Aliyun.
+举例:
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名.
 
     java -jar UpdateDomainRecord.jar DescribeDomainRecords LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK example.com
 
-Results:
+返回结果:
 
     {
         "PageNumber": 1,
@@ -50,17 +50,17 @@ Results:
         }
     }
 
-### Second: Set A record
+### 第二部:设置解析
 
-Usage:
+用法:
 
     java -jar /UpdateDomainRecord.jar UpdateDomainRecord AccessKeyId AccessKeySecret RecordId RR
 
-Example:
-Replace `AccessKeyId` and `AccessKeySecret` with your [accesskey](https://help.aliyun.com/knowledge_detail/38738.html), You can get `RecordId` and `RR` value from the results of first step.
+举例:
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`RecordId`和`RR`改为你上面返回结果中需要修改域名的对应值.
 
     java -jar /UpdateDomainRecord.jar UpdateDomainRecord  LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK 1351234134 pan
 
-### Scheduler
+### 定时调用
 
-You can make a schedule in Cron Job (Linux) or Scheduler Plan (Windows) .
+各位可以自行使用Windows的计划任务或者Linux的Crontab进行定时任务调度。
