@@ -4,6 +4,12 @@
 
 通过阿里云提供的API，把指定的域名解析到自己的公网IP(A记录)。
 
+视频教程如下：可以从4分钟开始看
+
+B站：https://www.bilibili.com/video/BV1Nz4y117Jh
+油管：https://youtu.be/p-xbc1xZqx8
+西瓜视频：https://www.ixigua.com/6934161327753527821
+
 ## 使用限制
 
 域名必须由阿里云/万网托管
