@@ -28,9 +28,9 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh
     java -jar ./UpdateDomainRecord.jar DescribeDomainRecords AccessKeyId AccessKeySecret DomainName
 
 举例:
-将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名.
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,以我的域名为例
 
-    java -jar UpdateDomainRecord.jar DescribeDomainRecords LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK example.com
+    java -jar UpdateDomainRecord.jar DescribeDomainRecords LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com
 
 返回结果:
 
@@ -65,7 +65,7 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh
 举例:
 将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`RecordId`和`RR`改为你上面返回结果中需要修改域名的对应值.
 
-    java -jar /UpdateDomainRecord.jar UpdateDomainRecord  LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK 1351234134 pan
+    java -jar UpdateDomainRecord.jar UpdateDomainRecord  LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK 1351234134 pan
 
 ### 定时调用
 
