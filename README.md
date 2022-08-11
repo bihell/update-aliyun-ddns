@@ -23,10 +23,9 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
 
     java -jar ./UpdateDomainRecord.jar AccessKeyId AccessKeySecret DomainName RR
 
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,`RR`为域名前缀(即配置页面的主机记录字段)。
+
 举例:
-
-将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,`RR`为域名前缀(即配置页面的主机记录字段)。以我的域名为例
-
 
     更新bihell.com的记录值（IP）
     java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com @
