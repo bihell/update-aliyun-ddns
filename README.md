@@ -19,15 +19,13 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
 
 ## 使用
 
-### 第一步:获取域名列表
-
 用法:
 
     java -jar ./UpdateDomainRecord.jar AccessKeyId AccessKeySecret DomainName RR
 
 举例:
 
-将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,`RR`为域名前缀几配置页面的主机记录。以我的域名为例
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,`RR`为域名前缀(即配置页面的主机记录字段)。以我的域名为例
 
 
     更新bihell.com的记录值（IP）
@@ -37,7 +35,7 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
     java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata
 
 
-### 定时调用
+## 定时调用
 
 各位可以自行使用Windows的计划任务或者Linux的Crontab进行定时任务调度。例子如下：
 
