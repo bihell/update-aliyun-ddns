@@ -42,29 +42,26 @@ public class UpdateDomainRecord {
         parameters.put("Format", "json");
         parameters.put("DomainName", DomainName);
 
-        JSONObject jsonObject = JSONUtil.parseObj(getResult(parameters,AccessKeySecret));
-        JSONObject domainRecords = JSONUtil.parseObj(jsonObject.getStr("DomainRecords"));
-        JSONArray record = JSONUtil.parseArray(domainRecords.getStr("Record"));
+        JSONObject jsonObject = JSONUtil.parseObj(getResult(parameters, AccessKeySecret));
+        JSONArray records = JSONUtil.parseArray(jsonObject.getByPath("DomainRecords.Record"));
 
         String recordId = null;
         String ip = null;
-        for (Object var : record) {
-            JSONObject entries = JSONUtil.parseObj(var);
+        for (Object record : records) {
+            JSONObject entries = JSONUtil.parseObj(record);
             if (RR.equals(entries.getStr("RR")) && "A".equals(entries.getStr("Type"))) {
                 recordId = entries.getStr("RecordId");
                 ip = entries.getStr("Value");
-                System.out.println("匹配记录："+entries.toString());
+                System.out.println("匹配记录：" + entries.toString());
                 break;
             }
         }
 
-        if (recordId ==null)
-        {
+        if (recordId == null) {
             System.out.println("未找到该记录！");
         }
 
-        if (ip.equals(IpChecker.getIp()))
-        {
+        if (ip.equals(IpChecker.getIp())) {
             System.out.println("IP地址未改变，无需更新！");
         } else {
             parameters.clear();
@@ -82,12 +79,12 @@ public class UpdateDomainRecord {
             parameters.put("Type", "A");
             parameters.put("Value", IpChecker.getIp());
 
-            System.out.println("IP已更新："+getResult(parameters,AccessKeySecret));
+            System.out.println("IP已更新：" + getResult(parameters, AccessKeySecret));
         }
     }
 
     @NotNull
-    private static String getResult(Map<String, String> parameters,String AccessKeySecret) throws IOException, SignatureException, NoSuchAlgorithmException, InvalidKeyException {
+    private static String getResult(Map<String, String> parameters, String AccessKeySecret) throws IOException, SignatureException, NoSuchAlgorithmException, InvalidKeyException {
         // calculate signature
         String getStringToSign = StringToSign.getSign(parameters);
         String signature = HmacSha1Signature.calculateRFC2104HMAC(getStringToSign.toString(), AccessKeySecret + "&");
