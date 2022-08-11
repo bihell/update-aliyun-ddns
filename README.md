@@ -12,12 +12,12 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
 
 ## 使用限制
 
-域名必须由阿里云/万网托管
+域名必须由`阿里云/万网托管`
 
 ## 程序部署
 
-1.下载JDK/JRE。
-2.直接下载打包好的Jar包或自行下载源码。
+1.下载[JDK/JRE](https://www.oracle.com/java/technologies/downloads/)。</br>
+2.直接下载打包好的[Jar包](https://github.com/bihell/update-aliyun-ddns/releases)或自行下载源码编译。
 
 ## 使用
 
@@ -25,48 +25,23 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
 
 用法:
 
-    java -jar ./UpdateDomainRecord.jar DescribeDomainRecords AccessKeyId AccessKeySecret DomainName
+    java -jar ./UpdateDomainRecord.jar AccessKeyId AccessKeySecret DomainName RR
 
 举例:
-将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,以我的域名为例
 
-    java -jar UpdateDomainRecord.jar DescribeDomainRecords LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com
+将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`DomainName`改为你在万网购买的域名,`RR`为域名前缀几配置页面的主机记录。以我的域名为例
 
-返回结果:
 
-    {
-        "PageNumber": 1,
-        "TotalCount": 4,
-        "PageSize": 20,
-        "RequestId": "9A7EF620-CFFD-4EF1-9C6D-F3A486E85D73",
-        "DomainRecords": {
-            "Record": [
-                {
-                    "RR": "pan",
-                    "Status": "ENABLE",
-                    "Value": "10.2.33.222",
-                    "RecordId": "1351234134",
-                    "Type": "A",
-                    "DomainName": "example.com",
-                    "Locked": false,
-                    "Line": "default",
-                    "TTL": "600"
-                },
-            ]
-        }
-    }
+    更新bihell.com的记录值（IP）
+    java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com @
 
-### 第二部:设置解析
+    更新bigdata.bihell.com的记录值（IP）
+    java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata
 
-用法:
-
-    java -jar /UpdateDomainRecord.jar UpdateDomainRecord AccessKeyId AccessKeySecret RecordId RR
-
-举例:
-将命令中的`AccessKeyId`和`AccessKeySecret`替换为你自己的[accesskey](https://help.aliyun.com/knowledge_detail/38738.html),`RecordId`和`RR`改为你上面返回结果中需要修改域名的对应值.
-
-    java -jar UpdateDomainRecord.jar UpdateDomainRecord  LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK 1351234134 pan
 
 ### 定时调用
 
-各位可以自行使用Windows的计划任务或者Linux的Crontab进行定时任务调度。
+各位可以自行使用Windows的计划任务或者Linux的Crontab进行定时任务调度。例子如下：
+
+    放在Linux Crontab，每十分钟更新一次
+    */10 * * * * java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata >> /tmp/ddns.log 2>&1'
