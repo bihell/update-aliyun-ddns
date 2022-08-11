@@ -6,9 +6,9 @@
 
 视频教程如下：可以从4分钟开始看
 
-B站：https://www.bilibili.com/video/BV1Nz4y117Jh
-油管：https://youtu.be/p-xbc1xZqx8
-西瓜视频：https://www.ixigua.com/6934161327753527821
+B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
+油管：https://youtu.be/p-xbc1xZqx8<br/>
+西瓜视频：https://www.ixigua.com/6934161327753527821<br/>
 
 ## 使用限制
 
