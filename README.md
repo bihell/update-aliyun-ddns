@@ -1,5 +1,3 @@
-[中文](https://github.com/bihell/UpdateDomainRecord) [English](https://github.com/bihell/UpdateDomainRecord/blob/master/README-EN.md)
-
 ## 功能
 
 通过阿里云提供的API，把指定的域名解析到自己的公网IP(A记录)。
