@@ -33,6 +33,8 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
     更新bigdata.bihell.com的记录值（IP）
     java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata
 
+    更新bigdata.bihell.com和www.bihell.com的记录值（IP）
+    java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata,www
 
 ## 定时调用
 
