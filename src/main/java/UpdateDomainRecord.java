@@ -25,7 +25,7 @@ public class UpdateDomainRecord {
             System.exit(0);
         }
 
-        String RR = args[3];
+        String[] RRs = args[3].split(",");
         String AccessKeyId = args[0];
         String AccessKeySecret = args[1];
         String DomainName = args[2];
@@ -43,44 +43,49 @@ public class UpdateDomainRecord {
         parameters.put("DomainName", DomainName);
 
         JSONObject jsonObject = JSONUtil.parseObj(getResult(parameters, AccessKeySecret));
+//        System.out.println(jsonObject.toStringPretty());
         JSONArray records = JSONUtil.parseArray(jsonObject.getByPath("DomainRecords.Record"));
 
-        String recordId = null;
-        String ip = null;
-        for (Object record : records) {
-            JSONObject entries = JSONUtil.parseObj(record);
-            if (RR.equals(entries.getStr("RR")) && "A".equals(entries.getStr("Type"))) {
-                recordId = entries.getStr("RecordId");
-                ip = entries.getStr("Value");
-                System.out.println("匹配记录：" + entries.toString());
-                break;
+        for (String rr : RRs) {
+            String recordId = null;
+            String ip = null;
+            for (Object record : records) {
+                JSONObject entries = JSONUtil.parseObj(record);
+                if (rr.equals(entries.getStr("RR")) && "A".equals(entries.getStr("Type"))) {
+                    recordId = entries.getStr("RecordId");
+                    ip = entries.getStr("Value");
+//                    System.out.println("matched record" + entries.toString());
+                    break;
+                }
+            }
+
+            if (recordId == null) {
+                System.out.println("The record " + rr + " was not found");
+                continue;
+            }
+
+            if (ip.equals(IpChecker.getIp())) {
+                System.out.println("The IP address of " +rr+  " is unchanged and does not need to be updated");
+            } else {
+                parameters.clear();
+                parameters.put("Action", "UpdateDomainRecord");
+                parameters.put("Version", "2015-01-09");
+                parameters.put("AccessKeyId", AccessKeyId);
+                parameters.put("Timestamp", StringToSign.formatIso8601Date(new Date()));
+                parameters.put("SignatureMethod", "HMAC-SHA1");
+                parameters.put("SignatureVersion", "1.0");
+                parameters.put("SignatureNonce", UUID.randomUUID().toString());
+                parameters.put("Format", "json");
+
+                parameters.put("RecordId", recordId);
+                parameters.put("RR", rr);
+                parameters.put("Type", "A");
+                parameters.put("Value", IpChecker.getIp());
+
+                System.out.println(rr+"has been updated");
             }
         }
 
-        if (recordId == null) {
-            System.out.println("未找到该记录！");
-        }
-
-        if (ip.equals(IpChecker.getIp())) {
-            System.out.println("IP地址未改变，无需更新！");
-        } else {
-            parameters.clear();
-            parameters.put("Action", "UpdateDomainRecord");
-            parameters.put("Version", "2015-01-09");
-            parameters.put("AccessKeyId", AccessKeyId);
-            parameters.put("Timestamp", StringToSign.formatIso8601Date(new Date()));
-            parameters.put("SignatureMethod", "HMAC-SHA1");
-            parameters.put("SignatureVersion", "1.0");
-            parameters.put("SignatureNonce", UUID.randomUUID().toString());
-            parameters.put("Format", "json");
-
-            parameters.put("RecordId", recordId);
-            parameters.put("RR", RR);
-            parameters.put("Type", "A");
-            parameters.put("Value", IpChecker.getIp());
-
-            System.out.println("IP已更新：" + getResult(parameters, AccessKeySecret));
-        }
     }
 
     @NotNull
