@@ -41,4 +41,4 @@ B站：https://www.bilibili.com/video/BV1Nz4y117Jh<br/>
 各位可以自行使用Windows的计划任务或者Linux的Crontab进行定时任务调度。例子如下：
 
     放在Linux Crontab，每十分钟更新一次
-    */10 * * * * java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata >> /tmp/ddns.log 2>&1'
+    */10 * * * * java -jar UpdateDomainRecord.jar LTAasdf234pQS3I hJda6Xkdasdf124vsqGfT0J3Ls7yK bihell.com bigdata >> /tmp/ddns.log 2>&1
