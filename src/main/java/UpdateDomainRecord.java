@@ -63,9 +63,9 @@ public class UpdateDomainRecord {
                 System.out.println("The record " + rr + " was not found");
                 continue;
             }
-
-            if (ip.equals(IpChecker.getIp())) {
-                System.out.println("The IP address of " +rr+  " is unchanged and does not need to be updated");
+            String currentIP = IpChecker.getIp();
+            if (ip.equals(currentIP)) {
+                System.out.println("The IP address of " + rr + " is unchanged and does not need to be updated");
             } else {
                 parameters.clear();
                 parameters.put("Action", "UpdateDomainRecord");
@@ -80,9 +80,12 @@ public class UpdateDomainRecord {
                 parameters.put("RecordId", recordId);
                 parameters.put("RR", rr);
                 parameters.put("Type", "A");
-                parameters.put("Value", IpChecker.getIp());
+                parameters.put("Value", currentIP);
 
-                System.out.println(rr+"has been updated");
+                if (getResult(parameters, AccessKeySecret).contains("RecordId")) {
+                    System.out.println(rr + "'s IP has been updated to " + currentIP);
+                }
+
             }
         }
 
