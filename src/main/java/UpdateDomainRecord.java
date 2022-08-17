@@ -42,8 +42,9 @@ public class UpdateDomainRecord {
         parameters.put("Format", "json");
         parameters.put("DomainName", DomainName);
 
-        JSONObject jsonObject = JSONUtil.parseObj(getResult(parameters, AccessKeySecret));
-//        System.out.println(jsonObject.toStringPretty());
+        String result = getResult(parameters, AccessKeySecret);
+        System.out.println(result);
+        JSONObject jsonObject = JSONUtil.parseObj(result);
         JSONArray records = JSONUtil.parseArray(jsonObject.getByPath("DomainRecords.Record"));
 
         for (String rr : RRs) {
