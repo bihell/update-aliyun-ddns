@@ -44,8 +44,7 @@ public class UpdateDomainRecord {
 
         String result = getResult(parameters, AccessKeySecret);
         System.out.println(result);
-        JSONObject jsonObject = JSONUtil.parseObj(result);
-        JSONArray records = JSONUtil.parseArray(jsonObject.getByPath("DomainRecords.Record"));
+        JSONArray records = JSONUtil.parseArray(JSONUtil.parseObj(result).getByPath("DomainRecords.Record"));
 
         for (String rr : RRs) {
             String recordId = null;
