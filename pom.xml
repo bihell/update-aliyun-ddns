@@ -25,12 +25,19 @@
             <artifactId>okhttp</artifactId>
             <version>4.11.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-http -->
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.19</version>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.22</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-json -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+            <version>5.8.22</version>
+        </dependency>
+
     </dependencies>
 
     <build>
